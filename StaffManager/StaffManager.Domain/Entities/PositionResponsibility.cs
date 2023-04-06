@@ -2,8 +2,8 @@
 
 namespace StaffManager.Domain.Entities
 {
-    [Table("Responsibilities")]
-    public class Responsibility
+    [Table("PositionResponsibilities")]
+    public class PositionResponsibility
     {
         [PrimaryKey, Indexed, AutoIncrement]
         public int Id { get; set; }
@@ -15,6 +15,6 @@ namespace StaffManager.Domain.Entities
         public int Importance { get; init; }
 
         [Indexed]
-        public int EmployeePositionID { get; set; }
+        public int PositionID { get; set; }
     }
 }
