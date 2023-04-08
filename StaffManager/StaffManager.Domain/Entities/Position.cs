@@ -5,6 +5,6 @@ namespace StaffManager.Domain.Entities
     [Table("Positions")]
     public class Position : Entity
     {
-        public int Selary { get; set; }
+        public int Salary { get; set; }
     }
 }
