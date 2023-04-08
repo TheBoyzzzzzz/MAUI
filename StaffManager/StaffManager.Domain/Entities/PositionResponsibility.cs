@@ -3,15 +3,11 @@
 namespace StaffManager.Domain.Entities
 {
     [Table("PositionResponsibilities")]
-    public class PositionResponsibility
+    public class PositionResponsibility : Entity
     {
-        [PrimaryKey, Indexed, AutoIncrement]
-        public int Id { get; set; }
-        [MaxLength(20)]
-        public string Name { get; set; }
-
         [MaxLength(100)]
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
+
         public int Importance { get; init; }
 
         [Indexed]
