@@ -3,12 +3,8 @@
 namespace StaffManager.Domain.Entities
 {
     [Table("Positions")]
-    public class Position
+    public class Position : Entity
     {
-        [PrimaryKey, Indexed, AutoIncrement ]
-        public int Id { get; init; }
-        [NotNull, Unique]
-        public string Name { get; set; } = string.Empty;
-        public int Selary { get; set; }
+        public int Salary { get; set; }
     }
 }
