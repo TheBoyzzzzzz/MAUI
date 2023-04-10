@@ -2,6 +2,7 @@
 using StaffManager.Domain.Abstractions;
 using StaffManager.Domain.Entities;
 using StaffManager.Persistence.Data;
+using System.Linq.Expressions;
 
 namespace StaffManager.Persistence.Repository
 {
@@ -15,39 +16,68 @@ namespace StaffManager.Persistence.Repository
             _context = context;
             _entities = context.Set<T>();
         }
-        public Task AddAsync(T entity, CancellationToken cancellationToken = default)
+        public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            await _entities.AddAsync(entity, cancellationToken);
         }
 
-        public Task DeleteAsync(T entity, CancellationToken cancellationToken = default)
+        public async Task DeleteAsync(T entity, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            _entities.Remove(entity);
         }
 
-        public Task<T> FirstOrDefaultAsync(System.Linq.Expressions.Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
+        public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return await _entities.FirstOrDefaultAsync(filter, cancellationToken);
         }
 
-        public Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default, params System.Linq.Expressions.Expression<Func<T, object>>[]? includesProperties)
+        public async Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default, params Expression<Func<T,
+            object>>[]? includesProperties)
         {
-            throw new NotImplementedException();
+            IQueryable<T>? query = _entities.AsQueryable();
+
+            if (includesProperties.Any())
+            {
+                foreach (Expression<Func<T, object>>? included in includesProperties)
+                {
+                    query = query.Include(included);
+                }
+            }
+
+            query = query.Where(el => el.Id == id);
+
+            return await query.FirstOrDefaultAsync();
         }
 
-        public Task<IReadOnlyList<T>> ListAllAsync(CancellationToken cancellationToken = default)
+        public async Task<IReadOnlyList<T>> ListAllAsync(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return await _entities.ToListAsync(cancellationToken);
         }
 
-        public Task<IReadOnlyList<T>> ListAsync(System.Linq.Expressions.Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default, params System.Linq.Expressions.Expression<Func<T, object>>[]? includesProperties)
+        public async Task<IReadOnlyList<T>> ListAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default,
+            params Expression<Func<T, object>>[]? includesProperties)
         {
-            throw new NotImplementedException();
+            IQueryable<T>? query = _entities.AsQueryable();
+
+            if (includesProperties.Any())
+            {
+                foreach (Expression<Func<T, object>>? included in includesProperties)
+                {
+                    query = query.Include(included);
+                }
+            }
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            return await query.ToListAsync();
         }
 
-        public Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
+        public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            _context.Entry(entity).State = EntityState.Modified;
         }
     }
 }
