@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using StaffManager.Domain.Abstractions;
 using StaffManager.Domain.Entities;
 using StaffManager.Persistence.Data;
