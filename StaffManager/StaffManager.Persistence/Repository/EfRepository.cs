@@ -36,7 +36,7 @@ namespace StaffManager.Persistence.Repository
         {
             IQueryable<T>? query = _entities.AsQueryable();
 
-            if (includesProperties.Any())
+            if (includesProperties?.Any() ?? false)
             {
                 foreach (Expression<Func<T, object>>? included in includesProperties)
                 {
@@ -59,7 +59,7 @@ namespace StaffManager.Persistence.Repository
         {
             IQueryable<T>? query = _entities.AsQueryable();
 
-            if (includesProperties.Any())
+            if (includesProperties?.Any() ?? false)
             {
                 foreach (Expression<Func<T, object>>? included in includesProperties)
                 {
