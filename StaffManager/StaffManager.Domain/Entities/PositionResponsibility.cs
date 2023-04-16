@@ -21,9 +21,7 @@ namespace StaffManager.Domain.Entities
 
         public int Importance { get; init; }
 
-        public int PositionId { get; }
         [Indexed]
-
-        public int PositionID { get; set; }
+        public int PositionId { get; set; }
     }
 }
