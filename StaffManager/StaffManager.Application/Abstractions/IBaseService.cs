@@ -8,9 +8,9 @@ namespace StaffManager.Application.Abstractions
         Task<IReadOnlyList<T>> GetAllAsync(CancellationToken cancellationToken = default);
         Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default,
             params Expression<Func<T, object>>[]? includesProperties);
-        Task<T> AddAsync(T item, CancellationToken cancellationToken = default);
-        Task<T> UpdateAsync(T item, CancellationToken cancellationToken = default);
-        Task<T> DeleteAsync(int id, CancellationToken cancellationToken = default);
+        Task AddAsync(T item, CancellationToken cancellationToken = default);
+        Task UpdateAsync(T item, CancellationToken cancellationToken = default);
+        Task DeleteAsync(T item, CancellationToken cancellationToken = default);
         Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> filter, CancellationToken
        cancellationToken = default);
         Task<IReadOnlyList<T>> ListAsync(Expression<Func<T, bool>> filter,
