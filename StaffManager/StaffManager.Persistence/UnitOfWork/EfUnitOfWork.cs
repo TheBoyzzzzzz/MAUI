@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using StaffManager.Domain.Abstractions;
+﻿using StaffManager.Domain.Abstractions;
 using StaffManager.Domain.Entities;
 using StaffManager.Persistence.Data;
 using StaffManager.Persistence.Repository;

@@ -1,7 +1,7 @@
-﻿using StaffManager.Application.Abstractions;
+﻿using System.Linq.Expressions;
+using StaffManager.Application.Abstractions;
 using StaffManager.Domain.Abstractions;
 using StaffManager.Domain.Entities;
-using System.Linq.Expressions;
 
 namespace StaffManager.Application.Services
 {

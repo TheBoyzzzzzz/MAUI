@@ -1,12 +1,7 @@
-﻿using StaffManager.Application.Abstractions;
+﻿using System.Linq.Expressions;
+using StaffManager.Application.Abstractions;
 using StaffManager.Domain.Abstractions;
 using StaffManager.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StaffManager.Application.Services
 {
@@ -21,12 +16,12 @@ namespace StaffManager.Application.Services
 
         public Task AddAsync(Position item, CancellationToken cancellationToken = default)
         {
-            return  _unitOfWork.PositionRepository.AddAsync(item, cancellationToken);
+            return _unitOfWork.PositionRepository.AddAsync(item, cancellationToken);
         }
 
         public Task DeleteAsync(Position item, CancellationToken cancellationToken = default)
         {
-            return  _unitOfWork.PositionRepository.DeleteAsync(item, cancellationToken);
+            return _unitOfWork.PositionRepository.DeleteAsync(item, cancellationToken);
         }
 
         public Task<Position> FirstOrDefaultAsync(Expression<Func<Position, bool>> filter, CancellationToken cancellationToken = default)
@@ -41,7 +36,7 @@ namespace StaffManager.Application.Services
 
         public Task<Position> GetByIdAsync(int id, CancellationToken cancellationToken = default, params Expression<Func<Position, object>>[]? includesProperties)
         {
-            return _unitOfWork.PositionRepository.GetByIdAsync(id, cancellationToken, includesProperties);  
+            return _unitOfWork.PositionRepository.GetByIdAsync(id, cancellationToken, includesProperties);
         }
 
         public Task<IReadOnlyList<PositionResponsibility>> GetResponsibilitiesListAsync(int positionId, CancellationToken cancellationToken = default)
