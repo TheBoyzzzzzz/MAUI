@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace StaffManager.Application.Services
 {
-    internal class PositionService : IPositionService
+    public class PositionService : IPositionService
     {
         private IUnitOfWork _unitOfWork;
 
