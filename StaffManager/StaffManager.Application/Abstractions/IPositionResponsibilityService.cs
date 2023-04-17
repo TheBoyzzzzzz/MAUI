@@ -2,7 +2,7 @@
 
 namespace StaffManager.Application.Abstractions
 {
-    public interface IPositionResponsibilityService : IBaseService<PositionResponsibility> 
+    public interface IPositionResponsibilityService : IBaseService<PositionResponsibility>
     {
 
     }

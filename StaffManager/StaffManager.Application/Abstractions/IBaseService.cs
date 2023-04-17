@@ -1,5 +1,5 @@
-﻿using StaffManager.Domain.Entities;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
+using StaffManager.Domain.Entities;
 
 namespace StaffManager.Application.Abstractions
 {

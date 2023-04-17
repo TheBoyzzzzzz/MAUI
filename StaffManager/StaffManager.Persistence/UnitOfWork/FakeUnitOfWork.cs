@@ -1,16 +1,10 @@
 ﻿using StaffManager.Domain.Abstractions;
 using StaffManager.Domain.Entities;
-using StaffManager.Persistence.Data;
 using StaffManager.Persistence.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StaffManager.Persistence.UnitOfWork
 {
-    internal class FakeUnitOfWork
+    public class FakeUnitOfWork : IUnitOfWork
     {
         private readonly Lazy<IRepository<Position>> _positionRepository;
         private readonly Lazy<IRepository<PositionResponsibility>> _positionResponsibilityRepository;
@@ -27,5 +21,8 @@ namespace StaffManager.Persistence.UnitOfWork
 
         public IRepository<PositionResponsibility> PositionResponsibilityRepository => _positionResponsibilityRepository.Value;
 
+        public Task RemoveDatbaseAsync() => throw new NotImplementedException();
+        public Task CreateDatabaseAsync() => throw new NotImplementedException();
+        public Task SaveAllAsync() => throw new NotImplementedException();
     }
 }
