@@ -4,6 +4,7 @@ using StaffManager.Application.Abstractions;
 using StaffManager.Application.Services;
 using StaffManager.Domain.Abstractions;
 using StaffManager.Persistence.UnitOfWork;
+using StaffManager.UI.ViewModels;
 
 namespace StaffManager.UI;
 
@@ -25,6 +26,7 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
         SetupServices(builder.Services);
+        SetupViewModels(builder.Services);
         return builder.Build();
     }
 
@@ -33,5 +35,10 @@ public static class MauiProgram
         services.AddSingleton<IUnitOfWork, FakeUnitOfWork>();
         services.AddSingleton<IPositionService, PositionService>();
         services.AddSingleton<IPositionResponsibilityService, PositionResponsibilityService>();
+    }
+
+    private static void SetupViewModels(IServiceCollection services)
+    {
+        services.AddSingleton<PositionsViewModel>();
     }
 }
