@@ -10,6 +10,7 @@ public partial class PositionsViewModel : ObservableObject
 {
     private readonly IPositionService _positionService;
     private readonly IPositionResponsibilityService _positionResponsibilityService;
+
     public PositionsViewModel(IPositionService positionService, IPositionResponsibilityService positionResponsibilityService)
     {
         _positionService = positionService;
@@ -19,12 +20,13 @@ public partial class PositionsViewModel : ObservableObject
     public ObservableCollection<PositionResponsibility> PositionResponsibilities { get; set; } = new();
 
     [ObservableProperty]
-    private Position selectedPosition;
+    private Position _selectedPosition;
 
     [RelayCommand]
     async Task UpdateGroupList() => await GetPositions();
     [RelayCommand]
     async Task UpdateMembersList() => await GetPositionResponsibilities();
+
     public async Task GetPositions()
     {
         var positions = await _positionService.GetAllAsync();
@@ -32,9 +34,12 @@ public partial class PositionsViewModel : ObservableObject
         {
             Positions.Clear();
             foreach (var position in positions)
+            {
                 Positions.Add(position);
+            }
         });
     }
+
     public async Task GetPositionResponsibilities()
     {
         var positionResponsibilities = await _positionResponsibilityService
@@ -44,7 +49,9 @@ public partial class PositionsViewModel : ObservableObject
         {
             PositionResponsibilities.Clear();
             foreach (var positionResponsibility in positionResponsibilities)
+            {
                 PositionResponsibilities.Add(positionResponsibility);
+            }
         });
     }
 }
