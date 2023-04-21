@@ -2,8 +2,8 @@
 
 namespace StaffManager.Application.Abstractions
 {
-    public interface IPositionService<T> : IBaseService<T> where T : Position
+    public interface IPositionService : IBaseService<Position>
     {
-        Task<IReadOnlyList<T>> GetResponsibilitiesListAsync(int positionId, CancellationToken cancellationToken = default);
+        Task<IReadOnlyList<PositionResponsibility>> GetResponsibilitiesListAsync(int positionId, CancellationToken cancellationToken = default);
     }
 }
