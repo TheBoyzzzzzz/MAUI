@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models ="clr-namespace:StaffManager.UI.ViewModels"
              x:Class="StaffManager.UI.Pages.Positions"
+             x:DataType="models:PositionsViewModel"
              Title="Positions">
+
+   
+    
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+      
+        <Picker x:Name="SetPicker"
+                HorizontalOptions="CenterAndExpand"
+                Margin="100, 10, 100, 10"
+                VerticalOptions="Center"
+                Title="Выберите должность"
+                BackgroundColor="LightGray"
+                TextColor="Black"
+                ItemsSource="{Binding Positions }"
+               
+                FontSize="Medium"
+                SelectedItem="{Binding SelectedPosition}">
+
+
+        </Picker>
+               
     </VerticalStackLayout>
 </ContentPage>
