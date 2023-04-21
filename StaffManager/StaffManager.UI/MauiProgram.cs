@@ -27,6 +27,7 @@ public static class MauiProgram
 #endif
         SetupServices(builder.Services);
         SetupViewModels(builder.Services);
+        SetupViews(builder.Services);
         return builder.Build();
     }
 
@@ -40,5 +41,9 @@ public static class MauiProgram
     private static void SetupViewModels(IServiceCollection services)
     {
         services.AddSingleton<PositionsViewModel>();
+    }
+    private static void SetupViews(IServiceCollection services)
+    {
+        services.AddTransient<Pages.Positions>();
     }
 }
