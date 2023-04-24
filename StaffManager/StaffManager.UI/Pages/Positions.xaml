@@ -3,14 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:models ="clr-namespace:StaffManager.UI.ViewModels"
+             xmlns:entities ="clr-namespace:StaffManager.Domain.Entities;assembly=StaffManager.Domain"
              x:Class="StaffManager.UI.Pages.Positions"
              x:DataType="models:PositionsViewModel"
              Title="Positions">
 
-   
-    
-    <VerticalStackLayout>
-      
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Loaded"
+                                        Command="{Binding UpdateGroupListCommand}" />
+    </ContentPage.Behaviors>
+
+
+    <Grid HorizontalOptions="Fill" VerticalOptions="Fill" >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
         <Picker x:Name="SetPicker"
                 HorizontalOptions="CenterAndExpand"
                 Margin="100, 10, 100, 10"
@@ -18,13 +29,58 @@
                 Title="Выберите должность"
                 BackgroundColor="LightGray"
                 TextColor="Black"
-                ItemsSource="{Binding Positions }"
-               
+                ItemsSource="{Binding Positions}"
+                ItemDisplayBinding="{Binding Name}"
                 FontSize="Medium"
-                SelectedItem="{Binding SelectedPosition}">
+                SelectedItem="{Binding SelectedPosition}"
+                Grid.Row="0">
+                
 
-
+            <Picker.Behaviors>
+                <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
+                                                Command="{Binding UpdateMembersListCommand}" />
+            </Picker.Behaviors>
+            
         </Picker>
+
+        <CollectionView x:Name="ResponsibilitiesView"
+                        ItemsSource="{Binding PositionResponsibilities}"
+                        HorizontalOptions="FillAndExpand"
+                        Margin="100, 0, 100, 0"
+                        BackgroundColor="White"
+                        Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:Name="SushiItem"
+                              x:DataType="entities:PositionResponsibility">
+
+                    <Grid Padding="10"
+                              RowDefinitions="40, 20"
+                              HorizontalOptions="Fill">
+
+                        <Label Grid.Row="0"
+                                   Text="{Binding Name}"
+                                   TextColor="Black"
+                                   FontSize="Medium"
+                                   HorizontalOptions="Fill"
+                                   VerticalOptions="Fill"
+                                   FontAutoScalingEnabled="True">
+                        </Label>
+
+                        <Label x:Name="Count"
+                                   Grid.Row="1"
+                                   Text="{Binding Description, StringFormat='Количество: {0:D}'}"
+                                   FontSize="Small"
+                                   TextColor="Black">
+
+                        </Label>
+                    </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+        
+        
                
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

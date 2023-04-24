@@ -17,7 +17,8 @@ public partial class PositionsViewModel : ObservableObject
         _positionResponsibilityService = positionResponsibilityService;
     }
     public ObservableCollection<Position> Positions { get; set; } = new();
-    public ObservableCollection<PositionResponsibility> PositionResponsibilities { get; set; } = new();
+    public ObservableCollection<PositionResponsibility> PositionResponsibilities { 
+        get; set; } = new();
 
     [ObservableProperty]
     private Position _selectedPosition;
@@ -42,16 +43,21 @@ public partial class PositionsViewModel : ObservableObject
 
     public async Task GetPositionResponsibilities()
     {
-        var positionResponsibilities = await _positionResponsibilityService
+       
+            var positionResponsibilities = await _positionResponsibilityService
             .ListAsync(posResp => posResp.PositionId == SelectedPosition.Id);
 
-        await MainThread.InvokeOnMainThreadAsync(() =>
-        {
-            PositionResponsibilities.Clear();
-            foreach (var positionResponsibility in positionResponsibilities)
+            await MainThread.InvokeOnMainThreadAsync(() =>
             {
-                PositionResponsibilities.Add(positionResponsibility);
-            }
-        });
+                PositionResponsibilities.Clear();
+                foreach (var positionResponsibility in positionResponsibilities)
+                {
+                    PositionResponsibilities.Add(positionResponsibility);
+                }
+            });
+        
+       
+
+       
     }
 }
