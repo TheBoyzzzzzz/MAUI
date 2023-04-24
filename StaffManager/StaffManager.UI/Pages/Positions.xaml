@@ -59,7 +59,7 @@
                           HorizontalOptions="Fill">
 
                         <Label Grid.Row="0"
-                               Text="{Binding Name}"
+                               Text="{Binding Name, StringFormat='Обязанность: {0}'}"
                                TextColor="Black"
                                FontSize="Medium"
                                HorizontalOptions="Fill"
@@ -67,9 +67,9 @@
                                FontAutoScalingEnabled="True">
                         </Label>
 
-                        <Label x:Name="Count"
+                        <Label x:Name="Description"
                                Grid.Row="1"
-                               Text="{Binding Description, StringFormat='Количество: {0:D}'}"
+                               Text="{Binding Description, StringFormat='Описание: {0}'}"
                                FontSize="Small"
                                TextColor="Black">
 
