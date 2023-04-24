@@ -55,7 +55,7 @@
                               x:DataType="entities:PositionResponsibility">
 
                     <Grid Padding="10"
-                          RowDefinitions="40, 20"
+                          RowDefinitions="40, 30"
                           HorizontalOptions="Fill">
 
                         <Label Grid.Row="0"
