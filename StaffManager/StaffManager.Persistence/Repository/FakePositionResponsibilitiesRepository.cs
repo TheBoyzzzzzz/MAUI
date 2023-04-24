@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using StaffManager.Domain.Abstractions;
 using StaffManager.Domain.Entities;
@@ -30,7 +29,9 @@ internal class FakePositionResponsibilitiesRepository : IRepository<PositionResp
         };
     }
     public Task<PositionResponsibility> GetByIdAsync(int id, CancellationToken cancellationToken = default, params Expression<Func<PositionResponsibility, object>>[]? includesProperties) => throw new NotImplementedException();
+
     public Task<IReadOnlyList<PositionResponsibility>> ListAllAsync(CancellationToken cancellationToken = default) => throw new NotImplementedException();
+
     public Task<IReadOnlyList<PositionResponsibility>> ListAsync(Expression<Func<PositionResponsibility, bool>> filter, CancellationToken cancellationToken = default, params Expression<Func<PositionResponsibility, object>>[]? includesProperties)
     {
         var query = _positionResponsibilities.AsQueryable().Where(filter);
@@ -42,8 +43,13 @@ internal class FakePositionResponsibilitiesRepository : IRepository<PositionResp
 
         return Task.FromResult((IReadOnlyList<PositionResponsibility>)query.ToList());
     }
+
     public Task AddAsync(PositionResponsibility entity, CancellationToken cancellationToken = default) => throw new NotImplementedException();
+
     public Task UpdateAsync(PositionResponsibility entity, CancellationToken cancellationToken = default) => throw new NotImplementedException();
+
     public Task DeleteAsync(PositionResponsibility entity, CancellationToken cancellationToken = default) => throw new NotImplementedException();
+
     public Task<PositionResponsibility> FirstOrDefaultAsync(Expression<Func<PositionResponsibility, bool>> filter, CancellationToken cancellationToken = default) => throw new NotImplementedException();
+
 }

@@ -1,8 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using StaffManager.Application.Abstractions;
 using StaffManager.Domain.Entities;
-using System.Collections.ObjectModel;
 
 namespace StaffManager.UI.ViewModels;
 
@@ -16,15 +16,16 @@ public partial class PositionsViewModel : ObservableObject
         _positionService = positionService;
         _positionResponsibilityService = positionResponsibilityService;
     }
+
     public ObservableCollection<Position> Positions { get; set; } = new();
-    public ObservableCollection<PositionResponsibility> PositionResponsibilities { 
-        get; set; } = new();
+    public ObservableCollection<PositionResponsibility> PositionResponsibilities { get; set; } = new();
 
     [ObservableProperty]
     private Position _selectedPosition;
 
     [RelayCommand]
     async Task UpdateGroupList() => await GetPositions();
+
     [RelayCommand]
     async Task UpdateMembersList() => await GetPositionResponsibilities();
 
@@ -43,21 +44,16 @@ public partial class PositionsViewModel : ObservableObject
 
     public async Task GetPositionResponsibilities()
     {
-       
-            var positionResponsibilities = await _positionResponsibilityService
-            .ListAsync(posResp => posResp.PositionId == SelectedPosition.Id);
+        var positionResponsibilities = await _positionResponsibilityService
+        .ListAsync(posResp => posResp.PositionId == SelectedPosition.Id);
 
-            await MainThread.InvokeOnMainThreadAsync(() =>
+        await MainThread.InvokeOnMainThreadAsync(() =>
+        {
+            PositionResponsibilities.Clear();
+            foreach (var positionResponsibility in positionResponsibilities)
             {
-                PositionResponsibilities.Clear();
-                foreach (var positionResponsibility in positionResponsibilities)
-                {
-                    PositionResponsibilities.Add(positionResponsibility);
-                }
-            });
-        
-       
-
-       
+                PositionResponsibilities.Add(positionResponsibility);
+            }
+        });
     }
 }
