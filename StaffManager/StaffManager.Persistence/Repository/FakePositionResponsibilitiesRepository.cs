@@ -29,28 +29,27 @@ internal class FakePositionResponsibilitiesRepository : IRepository<PositionResp
         };
     }
     public Task<PositionResponsibility> GetByIdAsync(int id, CancellationToken cancellationToken = default, params Expression<Func<PositionResponsibility, object>>[]? includesProperties) => throw new NotImplementedException();
+
     public Task<IReadOnlyList<PositionResponsibility>> ListAllAsync(CancellationToken cancellationToken = default) => throw new NotImplementedException();
-    public async Task<IReadOnlyList<PositionResponsibility>> ListAsync(Expression<Func<PositionResponsibility, bool>> filter, CancellationToken cancellationToken = default, params Expression<Func<PositionResponsibility, object>>[]? includesProperties)
+
+    public Task<IReadOnlyList<PositionResponsibility>> ListAsync(Expression<Func<PositionResponsibility, bool>> filter, CancellationToken cancellationToken = default, params Expression<Func<PositionResponsibility, object>>[]? includesProperties)
     {
-        IQueryable<PositionResponsibility>? query = _positionResponsibilities.AsQueryable();
+        var query = _positionResponsibilities.AsQueryable().Where(filter);
 
-        if (includesProperties?.Any() ?? false)
+        if (includesProperties != null)
         {
-            foreach (Expression<Func<PositionResponsibility, object>>? included in includesProperties)
-            {
-                query = query.Include(included);
-            }
+            query = includesProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
         }
 
-        if (filter != null)
-        {
-            query = query.Where(filter);
-        }
-
-        return await query.ToListAsync();
+        return Task.FromResult((IReadOnlyList<PositionResponsibility>)query.ToList());
     }
+
     public Task AddAsync(PositionResponsibility entity, CancellationToken cancellationToken = default) => throw new NotImplementedException();
+
     public Task UpdateAsync(PositionResponsibility entity, CancellationToken cancellationToken = default) => throw new NotImplementedException();
+
     public Task DeleteAsync(PositionResponsibility entity, CancellationToken cancellationToken = default) => throw new NotImplementedException();
+
     public Task<PositionResponsibility> FirstOrDefaultAsync(Expression<Func<PositionResponsibility, bool>> filter, CancellationToken cancellationToken = default) => throw new NotImplementedException();
+
 }

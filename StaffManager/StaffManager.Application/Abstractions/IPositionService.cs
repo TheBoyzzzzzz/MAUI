@@ -1,9 +1,8 @@
 ﻿using StaffManager.Domain.Entities;
 
-namespace StaffManager.Application.Abstractions
+namespace StaffManager.Application.Abstractions;
+
+public interface IPositionService : IBaseService<Position>
 {
-    public interface IPositionService : IBaseService<Position>
-    {
-        Task<IReadOnlyList<PositionResponsibility>> GetResponsibilitiesListAsync(int positionId, CancellationToken cancellationToken = default);
-    }
+    Task<IReadOnlyList<PositionResponsibility>> GetResponsibilitiesListAsync(int positionId, CancellationToken cancellationToken = default);
 }

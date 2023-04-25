@@ -10,6 +10,7 @@ public class AppDbContext : DbContext
     {
         Database.EnsureCreated();
     }
+
     public DbSet<Position> Positions { get; set; }
     public DbSet<PositionResponsibility> PositionResponsibilities { get; set; }
 }

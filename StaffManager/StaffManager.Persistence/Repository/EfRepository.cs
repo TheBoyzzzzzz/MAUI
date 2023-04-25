@@ -1,8 +1,8 @@
+using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using StaffManager.Domain.Abstractions;
 using StaffManager.Domain.Entities;
 using StaffManager.Persistence.Data;
-using System.Linq.Expressions;
 
 namespace StaffManager.Persistence.Repository;
 
