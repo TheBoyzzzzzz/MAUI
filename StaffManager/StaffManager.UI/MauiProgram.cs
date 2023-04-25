@@ -72,11 +72,8 @@ public static class MauiProgram
         dataDirectory = FileSystem.AppDataDirectory + "/";
 #endif
         connStr = string.Format(connStr, dataDirectory);
-        var options = new DbContextOptionsBuilder<AppDbContext>()
-       .UseSqlite(connStr)
-       .Options;
-        builder.Services.AddSingleton((s) =>
-         new AppDbContext(options));
+        var options = new DbContextOptionsBuilder<AppDbContext>().UseSqlite(connStr).Options;
+        builder.Services.AddSingleton((s) => new AppDbContext(options));
     }
 
     public async static Task SeedData(IServiceCollection services)
