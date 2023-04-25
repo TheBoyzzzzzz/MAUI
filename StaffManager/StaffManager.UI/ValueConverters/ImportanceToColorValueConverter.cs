@@ -3,8 +3,8 @@
 namespace StaffManager.UI.ValueConverters;
 public class ImportanceToColorValueConverter : IValueConverter
 {
-    private Color Important = Colors.LightPink;
-    private Color Default = Colors.LightGreen;
+    private readonly Color Important = Colors.LightPink;
+    private readonly Color Default = Colors.LightGreen;
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         if ((int)value > 2)
