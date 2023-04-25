@@ -45,7 +45,7 @@ public partial class PositionsViewModel : ObservableObject
     public async Task GetPositionResponsibilities()
     {
         var positionResponsibilities = await _positionResponsibilityService
-        .ListAsync(posResp => posResp.PositionId == SelectedPosition.Id);
+        .ListAsync(posResp => posResp.Position.Id == SelectedPosition.Id);
 
         await MainThread.InvokeOnMainThreadAsync(() =>
         {

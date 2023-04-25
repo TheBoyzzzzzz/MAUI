@@ -9,11 +9,10 @@ public class PositionResponsibility : Entity
     {
     }
 
-    public PositionResponsibility(string name, string description, int importance, int positionId) : base(name)
+    public PositionResponsibility(string name, string description, int importance) : base(name)
     {
         Description = description;
         Importance = importance;
-        PositionId = positionId;
     }
 
     [MaxLength(100)]
@@ -21,6 +20,5 @@ public class PositionResponsibility : Entity
 
     public int Importance { get; init; }
 
-    [Indexed]
-    public int PositionId { get; set; }
+    public Position Position { get; set; } = new();
 }
