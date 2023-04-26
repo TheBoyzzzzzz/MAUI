@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using CommunityToolkit.Maui;
+﻿using CommunityToolkit.Maui;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -10,6 +9,7 @@ using StaffManager.Domain.Entities;
 using StaffManager.Persistence.Data;
 using StaffManager.Persistence.UnitOfWork;
 using StaffManager.UI.ViewModels;
+using System.Reflection;
 
 namespace StaffManager.UI;
 
@@ -56,11 +56,13 @@ public static class MauiProgram
     private static void SetupViewModels(IServiceCollection services)
     {
         services.AddSingleton<PositionsViewModel>();
+        services.AddTransient<PositionResponsibilityDetailsViewModel>();
     }
 
     private static void SetupViews(IServiceCollection services)
     {
         services.AddTransient<Pages.Positions>();
+        services.AddTransient<Pages.PositionResponsibilityDetails>();
     }
 
     private static void AddDbContext(MauiAppBuilder builder)
