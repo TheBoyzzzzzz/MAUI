@@ -1,8 +1,9 @@
-﻿using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using StaffManager.Application.Abstractions;
 using StaffManager.Domain.Entities;
+using StaffManager.UI.Pages;
+using System.Collections.ObjectModel;
 
 namespace StaffManager.UI.ViewModels;
 
@@ -55,5 +56,12 @@ public partial class PositionsViewModel : ObservableObject
                 PositionResponsibilities.Add(positionResponsibility);
             }
         });
+    }
+
+    [RelayCommand]
+    async Task ShowDetails() => await GotoDetailsPage();
+    private async Task GotoDetailsPage()
+    {
+        await Shell.Current.GoToAsync(nameof(PositionResponsibilityDetails));
     }
 }

@@ -57,36 +57,41 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:Name="PositionResponsibilityItem"
                               x:DataType="entities:PositionResponsibility">
+                    <Frame BackgroundColor="AliceBlue">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding 
+                                Source={RelativeSource AncestorType={x:Type models:PositionsViewModel} },
+                                    Path=ShowDetailsCommand}"/>
+                        </Frame.GestureRecognizers>
+                        <Grid Padding="10"
+                              RowDefinitions="40, 50"
+                              HorizontalOptions="Fill">
 
-                    <Grid Padding="10"
-                          RowDefinitions="40, 50"
-                          HorizontalOptions="Fill">
 
+                            <Label Grid.Row="0"
+                                   Text="{Binding Name, StringFormat='Обязанность: {0}'}"
+                                   TextColor="Black"
+                                   FontSize="Medium"
+                                   HorizontalOptions="Fill"
+                                   VerticalOptions="Fill"
+                                   FontAutoScalingEnabled="True">
+                            </Label>
 
-                        <Label Grid.Row="0"
-                               Text="{Binding Name, StringFormat='Обязанность: {0}'}"
-                               TextColor="Black"
-                               FontSize="Medium"
-                               HorizontalOptions="Fill"
-                               VerticalOptions="Fill"
-                               FontAutoScalingEnabled="True">
-                        </Label>
-
-                        <Label x:Name="Description"
-                               x:DataType="entities:PositionResponsibility"
-                               Grid.Row="1"
-                               FontSize="Small"
-                               TextColor="Black"
-                               BackgroundColor="{Binding Importance, Converter={StaticResource ImportanceToColor}}">
-                            <Label.Text>
-                                <MultiBinding StringFormat="Описание: {0}&#x0a;Важность: {1}.">
-                                    <Binding Path="Description" />
-                                    <Binding Path="Importance" />
-                                </MultiBinding>
-                            </Label.Text>
-                        </Label>
-                    </Grid>
-
+                            <Label x:Name="Description"
+                                   x:DataType="entities:PositionResponsibility"
+                                   Grid.Row="1"
+                                   FontSize="Small"
+                                   TextColor="Black"
+                                   BackgroundColor="{Binding Importance, Converter={StaticResource ImportanceToColor}}">
+                                <Label.Text>
+                                    <MultiBinding StringFormat="Описание: {0}&#x0a;Важность: {1}.">
+                                        <Binding Path="Description" />
+                                        <Binding Path="Importance" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                        </Grid>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 
