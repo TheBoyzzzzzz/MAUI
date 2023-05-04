@@ -31,7 +31,7 @@
                        Grid.Row="1"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
-                       Text="{Binding SelectedObject.Position, Mode=TwoWay}"
+                       Text="{Binding SelectedObject.Position.Name, Mode=TwoWay}"
                        FontSize="Medium"
                        TextColor="Black" />
                 <Label Grid.Column="1"
