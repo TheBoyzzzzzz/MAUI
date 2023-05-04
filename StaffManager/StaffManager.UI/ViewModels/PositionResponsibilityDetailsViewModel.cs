@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace StaffManager.UI.ViewModels;
 
-public class PositionResponsibilityDetailsViewModel : IQueryAttributable, INotifyPropertyChanged
+public class PositionResponsibilityDetailsViewModel : IQueryAttributable,  INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler PropertyChanged;
 
