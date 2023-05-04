@@ -1,6 +1,5 @@
 ﻿using StaffManager.Domain.Abstractions;
 using StaffManager.Domain.Entities;
-using StaffManager.Persistence.Repository;
 
 namespace StaffManager.Persistence.UnitOfWork;
 

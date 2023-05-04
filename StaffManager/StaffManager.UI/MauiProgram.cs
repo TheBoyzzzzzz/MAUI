@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Maui;
+﻿using System.Reflection;
+using CommunityToolkit.Maui;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -9,7 +10,6 @@ using StaffManager.Domain.Entities;
 using StaffManager.Persistence.Data;
 using StaffManager.Persistence.UnitOfWork;
 using StaffManager.UI.ViewModels;
-using System.Reflection;
 
 namespace StaffManager.UI;
 
