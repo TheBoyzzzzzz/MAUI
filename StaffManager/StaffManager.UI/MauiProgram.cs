@@ -56,11 +56,13 @@ public static class MauiProgram
     private static void SetupViewModels(IServiceCollection services)
     {
         services.AddSingleton<PositionsViewModel>();
+        services.AddTransient<PositionResponsibilityDetailsViewModel>();
     }
 
     private static void SetupViews(IServiceCollection services)
     {
         services.AddTransient<Pages.Positions>();
+        services.AddTransient<Pages.PositionResponsibilityDetails>();
     }
 
     private static void AddDbContext(MauiAppBuilder builder)

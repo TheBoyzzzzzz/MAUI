@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using StaffManager.Application.Abstractions;
 using StaffManager.Domain.Entities;
+using StaffManager.UI.Pages;
 
 namespace StaffManager.UI.ViewModels;
 
@@ -55,5 +56,17 @@ public partial class PositionsViewModel : ObservableObject
                 PositionResponsibilities.Add(positionResponsibility);
             }
         });
+    }
+
+    [RelayCommand]
+    async Task ShowDetails(PositionResponsibility responsibility) => await GotoDetailsPage(responsibility);
+    private async Task GotoDetailsPage(PositionResponsibility responsibility)
+    {
+        IDictionary<string, object> parameters = new Dictionary<string, object>()
+        {
+                {"PositionResponsibility", responsibility}
+        };
+
+        await Shell.Current.GoToAsync(nameof(PositionResponsibilityDetails), parameters);
     }
 }
