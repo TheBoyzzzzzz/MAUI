@@ -41,7 +41,6 @@ public static class MauiProgram
         SetupServices(builder.Services);
         SetupViewModels(builder.Services);
         SetupViews(builder.Services);
-
         AddDbContext(builder);
         SeedData(builder.Services);
         return builder.Build();
