@@ -8,20 +8,23 @@ using StaffManager.Domain.Entities;
 using StaffManager.UI.Pages;
 using StaffManager.UI.ViewModels;
 using CommunityToolkit.Maui.Core;
+using StaffManager.Application.Abstractions;
 
 namespace StaffManager.UI.ViewModels
 {
     public partial class AddPositionViewModel : ObservableObject
     {
-        public AddPositionViewModel(IServiceProvider serviceProvider)
+        public AddPositionViewModel(IServiceProvider serviceProvider, IPositionService positionService)
         {
             _serviceProvider = serviceProvider;
+            _positionService = positionService;
         }
 
         [RelayCommand] async Task AddPosition() => await Add();
         [ObservableProperty] private string _name;
         [ObservableProperty] private string _salary;
         private readonly IServiceProvider _serviceProvider;
+        private readonly IPositionService _positionService;
 
         private async Task Add()
         {
@@ -32,13 +35,9 @@ namespace StaffManager.UI.ViewModels
             else
             {
                 var pos = new Position(Name, salary);
-                IDictionary<string, object> parameters = new Dictionary<string, object>()
-                {
-                    {"Position", pos}
-                };
-
                 var posViewModel = _serviceProvider.GetRequiredService<PositionsViewModel>();
-
+                await _positionService.AddAsync(pos);
+                // по моему тут должно быть SaveChanges()
                 await MainThread.InvokeOnMainThreadAsync(() =>
                  {
                      posViewModel.Positions.Add(pos);
