@@ -7,7 +7,7 @@ using StaffManager.UI.Pages;
 
 namespace StaffManager.UI.ViewModels;
 
-public partial class PositionsViewModel : ObservableObject
+public partial class PositionsViewModel : ObservableObject, IQueryAttributable
 {
     private readonly IPositionService _positionService;
     private readonly IPositionResponsibilityService _positionResponsibilityService;
@@ -35,7 +35,6 @@ public partial class PositionsViewModel : ObservableObject
         var positions = await _positionService.GetAllAsync();
         await MainThread.InvokeOnMainThreadAsync(() =>
         {
-            Positions.Clear();
             foreach (var position in positions)
             {
                 Positions.Add(position);
@@ -68,5 +67,14 @@ public partial class PositionsViewModel : ObservableObject
         };
 
         await Shell.Current.GoToAsync(nameof(PositionResponsibilityDetails), parameters);
+    }
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            Positions.Clear();
+            Positions.Add(query["Position"] as Position);
+        });
     }
 }
