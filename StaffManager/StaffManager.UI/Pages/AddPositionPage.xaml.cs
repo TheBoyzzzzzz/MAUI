@@ -7,8 +7,8 @@ public partial class AddPositionPage : ContentPage
     private readonly AddPositionViewModel _vm;
 
     public AddPositionPage(AddPositionViewModel vm)
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         _vm = vm;
         BindingContext = _vm;
     }
