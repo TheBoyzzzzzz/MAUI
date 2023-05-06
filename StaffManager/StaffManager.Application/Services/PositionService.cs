@@ -55,4 +55,9 @@ public class PositionService : IPositionService
     {
         return _unitOfWork.PositionRepository.UpdateAsync(item, cancellationToken);
     }
+
+    public Task SaveChangesAsync()
+    {
+        return _unitOfWork.SaveAllAsync();
+    }
 }
