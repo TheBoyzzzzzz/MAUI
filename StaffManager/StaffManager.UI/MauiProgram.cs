@@ -9,6 +9,7 @@ using StaffManager.Domain.Abstractions;
 using StaffManager.Domain.Entities;
 using StaffManager.Persistence.Data;
 using StaffManager.Persistence.UnitOfWork;
+using StaffManager.UI.Pages;
 using StaffManager.UI.ViewModels;
 
 namespace StaffManager.UI;
@@ -56,13 +57,15 @@ public static class MauiProgram
     private static void SetupViewModels(IServiceCollection services)
     {
         services.AddSingleton<PositionsViewModel>();
+        services.AddSingleton<MainViewModel>();
         services.AddTransient<PositionResponsibilityDetailsViewModel>();
     }
 
     private static void SetupViews(IServiceCollection services)
     {
-        services.AddTransient<Pages.Positions>();
-        services.AddTransient<Pages.PositionResponsibilityDetails>();
+        services.AddTransient<Positions>();
+        services.AddTransient<PositionResponsibilityDetails>();
+        services.AddTransient<MainPage>();
     }
 
     private static void AddDbContext(MauiAppBuilder builder)
