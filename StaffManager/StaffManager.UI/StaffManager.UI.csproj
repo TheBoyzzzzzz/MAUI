@@ -70,6 +70,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\AddPositionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AddPositionResponsibilityPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\PositionResponsibilityDetails.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
