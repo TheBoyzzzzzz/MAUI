@@ -20,6 +20,8 @@ public interface IBaseService<T> where T : Entity
    cancellationToken = default);
 
     Task<IReadOnlyList<T>> ListAsync(Expression<Func<T, bool>> filter,
-    CancellationToken cancellationToken = default,
-    params Expression<Func<T, object>>[]? includesProperties);
+        CancellationToken cancellationToken = default,
+        params Expression<Func<T, object>>[]? includesProperties);
+
+    Task SaveChangesAsync();
 }

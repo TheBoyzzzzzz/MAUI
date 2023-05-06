@@ -48,5 +48,10 @@ public class PositionResponsibilityService : IPositionResponsibilityService
     {
         return _unitOfWork.PositionResponsibilityRepository.UpdateAsync(item, cancellationToken);
     }
+
+    public Task SaveChangesAsync()
+    {
+        return _unitOfWork.SaveAllAsync();
+    }
 }
 

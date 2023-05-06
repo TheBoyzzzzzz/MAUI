@@ -1,14 +1,7 @@
-﻿using CommunityToolkit.Maui.Alerts;
-using System.Threading;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Controls;
-using StaffManager.Application.Services;
-using StaffManager.Domain.Entities;
-using StaffManager.UI.Pages;
-using StaffManager.UI.ViewModels;
-using CommunityToolkit.Maui.Core;
 using StaffManager.Application.Abstractions;
+using StaffManager.Domain.Entities;
 
 namespace StaffManager.UI.ViewModels
 {
@@ -37,7 +30,8 @@ namespace StaffManager.UI.ViewModels
                 var pos = new Position(Name, salary);
                 var posViewModel = _serviceProvider.GetRequiredService<PositionsViewModel>();
                 await _positionService.AddAsync(pos);
-                // по моему тут должно быть SaveChanges()
+                await _positionService.SaveChangesAsync();
+
                 await MainThread.InvokeOnMainThreadAsync(() =>
                  {
                      posViewModel.Positions.Add(pos);
