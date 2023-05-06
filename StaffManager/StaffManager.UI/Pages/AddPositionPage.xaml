@@ -57,6 +57,7 @@
                    WidthRequest="150" />
         </Grid>
         <Button Text="Добавить"
+                WidthRequest="200"
                 Command="{Binding AddPositionCommand}"
                 CommandParameter="{Binding}" />
     </VerticalStackLayout>
