@@ -55,6 +55,7 @@ public static class MauiProgram
     {
         services.AddSingleton<PositionsViewModel>();
         services.AddSingleton<AddPositionViewModel>();
+        services.AddSingleton<AddPositionResponsibilityViewModel>();
         services.AddSingleton<MainViewModel>();
         services.AddTransient<PositionResponsibilityDetailsViewModel>();
     }
@@ -63,6 +64,7 @@ public static class MauiProgram
     {
         services.AddTransient<Positions>();
         services.AddTransient<AddPositionPage>();
+        services.AddTransient<AddPositionResponsibilityPage>();
         services.AddTransient<PositionResponsibilityDetails>();
         services.AddTransient<MainPage>();
     }

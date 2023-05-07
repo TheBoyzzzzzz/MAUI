@@ -33,6 +33,8 @@ public partial class PositionsViewModel : ObservableObject
     public async Task GetPositions()
     {
         var positions = await _positionService.GetAllAsync();
+        Positions.Clear();
+
         await MainThread.InvokeOnMainThreadAsync(() =>
         {
             foreach (var position in positions)
