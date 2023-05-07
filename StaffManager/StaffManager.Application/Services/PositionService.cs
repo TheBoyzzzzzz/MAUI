@@ -7,7 +7,7 @@ namespace StaffManager.Application.Services;
 
 public class PositionService : IPositionService
 {
-    private IUnitOfWork _unitOfWork;
+    private readonly IUnitOfWork _unitOfWork;
 
     public PositionService(IUnitOfWork unit)
     {
