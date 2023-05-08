@@ -7,42 +7,40 @@ using StaffManager.Domain.Entities;
 namespace StaffManager.UI.ViewModels;
 public partial class AddPositionResponsibilityViewModel : ObservableObject
 {
-    public AddPositionResponsibilityViewModel(IServiceProvider serviceProvider, IPositionService positionService,
-        IPositionResponsibilityService positionResponsibilityService)
+    public AddPositionResponsibilityViewModel(IPositionResponsibilityService positionResponsibilityService,
+        MutualPositionCollectionViewModel mutualPositionCollectionViewModel)
     {
-        _serviceProvider = serviceProvider;
-        _positionService = positionService;
         _positionResponsibilityService = positionResponsibilityService;
+        MutualPositionCollectionViewModel = mutualPositionCollectionViewModel;
     }
 
     [RelayCommand] async Task AddPositionResponsibility() => await Add();
-    [RelayCommand] async Task UpdateGroupList() => await GetPositions();
+    //[RelayCommand] async Task UpdateGroupList() => await GetPositions();
 
     [ObservableProperty] private string _name;
     [ObservableProperty] private string _description;
     [ObservableProperty] private string _importance;
 
-    private readonly IServiceProvider _serviceProvider;
-    private readonly IPositionService _positionService;
     private readonly IPositionResponsibilityService _positionResponsibilityService;
 
-    public ObservableCollection<Position> Positions { get; set; } = new();
+    //public ObservableCollection<Position> Positions { get; set; } = new();
+    public MutualPositionCollectionViewModel MutualPositionCollectionViewModel { get; }
 
     [ObservableProperty]
     private Position _selectedPosition;
 
-    public async Task GetPositions()
-    {
-        var positions = await _positionService.GetAllAsync();
-        Positions.Clear();
-        await MainThread.InvokeOnMainThreadAsync(() =>
-        {
-            foreach (var position in positions)
-            {
-                Positions.Add(position);
-            }
-        });
-    }
+    //public async Task GetPositions()
+    //{
+    //    var positions = await _positionService.GetAllAsync();
+    //    Positions.Clear();
+    //    await MainThread.InvokeOnMainThreadAsync(() =>
+    //    {
+    //        foreach (var position in positions)
+    //        {
+    //            Positions.Add(position);
+    //        }
+    //    });
+    //}
     private async Task Add()
     {
         if (SelectedPosition == null)
@@ -59,6 +57,5 @@ public partial class AddPositionResponsibilityViewModel : ObservableObject
         var posResposibility = new PositionResponsibility(Name, Description, importance) { Position = SelectedPosition };
         await _positionResponsibilityService.AddAsync(posResposibility);
         await _positionResponsibilityService.SaveChangesAsync();
-
     }
 }

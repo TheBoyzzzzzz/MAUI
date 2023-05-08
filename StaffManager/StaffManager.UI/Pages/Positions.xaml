@@ -13,10 +13,11 @@
         <convertions:ImportanceToColorValueConverter x:Key="ImportanceToColor" />
     </ContentPage.Resources>
 
-    <ContentPage.Behaviors>
+    <!--<ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior EventName="Loaded"
                                         Command="{Binding UpdateGroupListCommand}" />
-    </ContentPage.Behaviors>
+    ЛИШНЕЕ
+    </ContentPage.Behaviors>-->
 
 
     <Grid HorizontalOptions="Fill"
@@ -34,7 +35,7 @@
                 Title="Выберите должность"
                 BackgroundColor="LightGray"
                 TextColor="Black"
-                ItemsSource="{Binding Positions}"
+                ItemsSource="{Binding MutualPositionCollectionViewModel.Positions}"
                 ItemDisplayBinding="{Binding Name}"
                 FontSize="Medium"
                 SelectedItem="{Binding SelectedPosition}"
