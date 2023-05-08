@@ -58,7 +58,7 @@ public static class MauiProgram
         services.AddSingleton<AddPositionResponsibilityViewModel>();
         services.AddSingleton<MainViewModel>();
         services.AddSingleton<PositionResponsibilityDetailsViewModel>();
-        services.AddSingleton<MutualPositionCollectionViewModel>();
+        services.AddSingleton<PositionStorage>();
     }
 
     private static void SetupViews(IServiceCollection services)

@@ -8,11 +8,11 @@ namespace StaffManager.UI.ViewModels;
 public partial class AddPositionViewModel : ObservableObject
 {
     public AddPositionViewModel(IServiceProvider serviceProvider, IPositionService positionService,
-        MutualPositionCollectionViewModel mutualPositionCollectionViewModel)
+        PositionStorage positionStorage)
     {
         _serviceProvider = serviceProvider;
         _positionService = positionService;
-        MutualPositionCollectionViewModel = mutualPositionCollectionViewModel;
+        PositionStorage = positionStorage;
     }
 
     [RelayCommand] async Task AddPosition() => await Add();
@@ -21,7 +21,7 @@ public partial class AddPositionViewModel : ObservableObject
     private readonly IServiceProvider _serviceProvider;
     private readonly IPositionService _positionService;
 
-    public MutualPositionCollectionViewModel MutualPositionCollectionViewModel { get; }
+    public PositionStorage PositionStorage { get; }
 
     private async Task Add()
     {
@@ -38,7 +38,7 @@ public partial class AddPositionViewModel : ObservableObject
 
             await MainThread.InvokeOnMainThreadAsync(() =>
              {
-                 MutualPositionCollectionViewModel.Positions.Add(pos);
+                 PositionStorage.Positions.Add(pos);
              });
         }
     }

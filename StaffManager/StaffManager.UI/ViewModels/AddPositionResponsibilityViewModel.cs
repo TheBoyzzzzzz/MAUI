@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using StaffManager.Application.Abstractions;
 using StaffManager.Domain.Entities;
@@ -8,10 +7,10 @@ namespace StaffManager.UI.ViewModels;
 public partial class AddPositionResponsibilityViewModel : ObservableObject
 {
     public AddPositionResponsibilityViewModel(IPositionResponsibilityService positionResponsibilityService,
-        MutualPositionCollectionViewModel mutualPositionCollectionViewModel)
+        PositionStorage positionStorage)
     {
         _positionResponsibilityService = positionResponsibilityService;
-        MutualPositionCollectionViewModel = mutualPositionCollectionViewModel;
+        PositionStorage = positionStorage;
     }
 
     [RelayCommand] async Task AddPositionResponsibility() => await Add();
@@ -24,7 +23,7 @@ public partial class AddPositionResponsibilityViewModel : ObservableObject
     private readonly IPositionResponsibilityService _positionResponsibilityService;
 
     //public ObservableCollection<Position> Positions { get; set; } = new();
-    public MutualPositionCollectionViewModel MutualPositionCollectionViewModel { get; }
+    public PositionStorage PositionStorage { get; }
 
     [ObservableProperty]
     private Position _selectedPosition;

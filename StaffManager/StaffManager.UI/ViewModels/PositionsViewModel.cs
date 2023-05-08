@@ -13,16 +13,16 @@ public partial class PositionsViewModel : ObservableObject
     private readonly IPositionResponsibilityService _positionResponsibilityService;
 
     public PositionsViewModel(IPositionService positionService, IPositionResponsibilityService positionResponsibilityService,
-        MutualPositionCollectionViewModel mutualPositionCollectionViewModel)
+        PositionStorage positionStorage)
     {
         _positionService = positionService;
         _positionResponsibilityService = positionResponsibilityService;
-        MutualPositionCollectionViewModel = mutualPositionCollectionViewModel;
+        PositionStorage = positionStorage;
     }
 
     //public ObservableCollection<Position> Positions { get; set; } = new();
     public ObservableCollection<PositionResponsibility> PositionResponsibilities { get; set; } = new();
-    public MutualPositionCollectionViewModel MutualPositionCollectionViewModel { get; }
+    public PositionStorage PositionStorage { get; }
 
     [ObservableProperty]
     private Position _selectedPosition;

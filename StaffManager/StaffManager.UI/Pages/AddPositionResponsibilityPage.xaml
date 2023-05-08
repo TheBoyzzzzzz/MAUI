@@ -47,7 +47,7 @@
                     Title="Выберите должность"
                     BackgroundColor="LightGray"
                     TextColor="Black"
-                    ItemsSource="{Binding MutualPositionCollectionViewModel.Positions}"
+                    ItemsSource="{Binding PositionStorage.Positions}"
                     ItemDisplayBinding="{Binding Name}"
                     FontSize="Medium"
                     SelectedItem="{Binding SelectedPosition}"

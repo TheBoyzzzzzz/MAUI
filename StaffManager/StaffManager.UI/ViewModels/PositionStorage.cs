@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.ObjectModel;
 using StaffManager.Application.Abstractions;
 using StaffManager.Domain.Entities;
 
 namespace StaffManager.UI.ViewModels;
-public partial class MutualPositionCollectionViewModel : ObservableObject
+public class PositionStorage
 {
     private readonly IPositionService _positionService;
 
-    public MutualPositionCollectionViewModel(IPositionService positionService)
+    public PositionStorage(IPositionService positionService)
     {
         _positionService = positionService;
         MainThread.BeginInvokeOnMainThread(async () =>
         {
             var positions = await _positionService.GetAllAsync();
-            foreach(var pos in positions)
+            foreach (var pos in positions)
             {
                 Positions.Add(pos);
             }
