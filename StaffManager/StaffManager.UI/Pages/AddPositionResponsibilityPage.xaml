@@ -1,12 +1,93 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="StaffManager.UI.Pages.AddPositionResponsibilityPage"
-             Title="AddPositionResponsibilityPage">
+             Title="Добавление обязанности">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="JustLabel"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+                <Setter Property="FontSize"
+                        Value="Medium" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+                <Setter Property="VerticalTextAlignment"
+                        Value="Center" />
+                <Setter Property="VerticalOptions"
+                        Value="Center" />
+                <Setter Property="HorizontalOptions"
+                        Value="End" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Loaded"
+                                        Command="{Binding UpdateGroupListCommand}" />
+    </ContentPage.Behaviors>
+
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Grid RowDefinitions="*,*,*,*"
+              ColumnDefinitions="Auto,Auto"
+              HorizontalOptions="Center"
+              VerticalOptions="Center"
+              Padding="40,40,40,40"
+              Margin="10,50,50,50"
+              ColumnSpacing="30"
+              RowSpacing="20">
+            <Picker x:Name="PositionPicker"
+                    HorizontalOptions="Center"
+                    Margin="10, 10, 50, 10"
+                    VerticalOptions="Center"
+                    Title="Выберите должность"
+                    BackgroundColor="LightGray"
+                    TextColor="Black"
+                    ItemsSource="{Binding PositionStorage.Positions}"
+                    ItemDisplayBinding="{Binding Name}"
+                    FontSize="Medium"
+                    SelectedItem="{Binding SelectedPosition}"
+                    Grid.Row="0"
+                    Grid.Column="1">
+            </Picker>
+            <Label Grid.Row="1"
+                   Grid.Column="0"
+                   Text="Название"
+                   Style="{StaticResource JustLabel}" />
+            <Entry Text="{Binding Name}"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   HeightRequest="50"
+                   Placeholder="Разворачивать фантики"
+                   WidthRequest="200" />
+            <Label Grid.Row="2"
+                   Grid.Column="0"
+                   Text="Описание"
+                   Style="{StaticResource JustLabel}" />
+            <Entry Text="{Binding Description}"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   HeightRequest="50"
+                   Placeholder="30 фантиков в минуту"
+                   WidthRequest="200" />
+            <Label Grid.Row="3"
+                   Grid.Column="0"
+                   Text="Важность"
+                   Style="{StaticResource JustLabel}" />
+            <Entry Text="{Binding Importance}"
+                   Grid.Row="3"
+                   Grid.Column="1"
+                   Placeholder="1"
+                   HeightRequest="50"
+                   WidthRequest="200" />
+        </Grid>
+        <Button Text="Добавить"
+                WidthRequest="200"
+                Command="{Binding AddPositionResponsibilityCommand}"
+                CommandParameter="{Binding}" />
     </VerticalStackLayout>
 </ContentPage>

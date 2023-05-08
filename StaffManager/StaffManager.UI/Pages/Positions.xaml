@@ -7,16 +7,17 @@
              xmlns:convertions="clr-namespace:StaffManager.UI.ValueConverters"
              x:Class="StaffManager.UI.Pages.Positions"
              x:DataType="models:PositionsViewModel"
-             Title="Positions">
+             Title="Список позиций и их обязанностей">
 
     <ContentPage.Resources>
         <convertions:ImportanceToColorValueConverter x:Key="ImportanceToColor" />
     </ContentPage.Resources>
 
-    <ContentPage.Behaviors>
+    <!--<ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior EventName="Loaded"
                                         Command="{Binding UpdateGroupListCommand}" />
-    </ContentPage.Behaviors>
+    ЛИШНЕЕ
+    </ContentPage.Behaviors>-->
 
 
     <Grid HorizontalOptions="Fill"
@@ -34,7 +35,7 @@
                 Title="Выберите должность"
                 BackgroundColor="LightGray"
                 TextColor="Black"
-                ItemsSource="{Binding Positions}"
+                ItemsSource="{Binding PositionStorage.Positions}"
                 ItemDisplayBinding="{Binding Name}"
                 FontSize="Medium"
                 SelectedItem="{Binding SelectedPosition}"
