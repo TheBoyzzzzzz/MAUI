@@ -57,16 +57,16 @@ public static class MauiProgram
         services.AddSingleton<AddPositionViewModel>();
         services.AddSingleton<AddPositionResponsibilityViewModel>();
         services.AddSingleton<MainViewModel>();
-        services.AddTransient<PositionResponsibilityDetailsViewModel>();
+        services.AddSingleton<PositionResponsibilityDetailsViewModel>();
     }
 
     private static void SetupViews(IServiceCollection services)
     {
-        services.AddTransient<Positions>();
-        services.AddTransient<AddPositionPage>();
-        services.AddTransient<AddPositionResponsibilityPage>();
-        services.AddTransient<PositionResponsibilityDetails>();
-        services.AddTransient<MainPage>();
+        services.AddSingleton<Positions>();
+        services.AddSingleton<AddPositionPage>();
+        services.AddSingleton<AddPositionResponsibilityPage>();
+        services.AddSingleton<PositionResponsibilityDetails>();
+        services.AddSingleton<MainPage>();
     }
 
     private static void AddDbContext(MauiAppBuilder builder)
