@@ -7,7 +7,7 @@
              xmlns:convertions="clr-namespace:StaffManager.UI.ValueConverters"
              x:Class="StaffManager.UI.Pages.Positions"
              x:DataType="models:PositionsViewModel"
-             Title="Positions">
+             Title="Список позиций и их обязанностей">
 
     <ContentPage.Resources>
         <convertions:ImportanceToColorValueConverter x:Key="ImportanceToColor" />

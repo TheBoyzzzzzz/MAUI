@@ -4,7 +4,7 @@
              xmlns:models="clr-namespace:StaffManager.UI.ViewModels"
              x:Class="StaffManager.UI.Pages.PositionResponsibilityDetails"
              x:DataType="models:PositionResponsibilityDetailsViewModel"
-             Title="PositionResponsibilityDetails">
+             Title="Детальная информация об обязанности">
     <VerticalStackLayout>
         <Frame HorizontalOptions="FillAndExpand"
                VerticalOptions="FillAndExpand"
