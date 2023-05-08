@@ -25,12 +25,12 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior EventName="Loaded"
                                         Command="{Binding UpdateGroupListCommand}" />
     </ContentPage.Behaviors>
-    
+
     <VerticalStackLayout>
         <Grid RowDefinitions="*,*,*,*"
               ColumnDefinitions="Auto,Auto"
@@ -41,18 +41,18 @@
               ColumnSpacing="30"
               RowSpacing="20">
             <Picker x:Name="PositionPicker"
-                HorizontalOptions="Center"
-                Margin="10, 10, 50, 10"
-                VerticalOptions="Center"
-                Title="Выберите должность"
-                BackgroundColor="LightGray"
-                TextColor="Black"
-                ItemsSource="{Binding Positions}"
-                ItemDisplayBinding="{Binding Name}"
-                FontSize="Medium"
-                SelectedItem="{Binding SelectedPosition}"
-                Grid.Row="0"
-                Grid.Column="1">
+                    HorizontalOptions="Center"
+                    Margin="10, 10, 50, 10"
+                    VerticalOptions="Center"
+                    Title="Выберите должность"
+                    BackgroundColor="LightGray"
+                    TextColor="Black"
+                    ItemsSource="{Binding PositionStorage.Positions}"
+                    ItemDisplayBinding="{Binding Name}"
+                    FontSize="Medium"
+                    SelectedItem="{Binding SelectedPosition}"
+                    Grid.Row="0"
+                    Grid.Column="1">
             </Picker>
             <Label Grid.Row="1"
                    Grid.Column="0"
