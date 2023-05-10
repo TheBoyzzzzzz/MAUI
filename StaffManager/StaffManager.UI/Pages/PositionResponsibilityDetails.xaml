@@ -11,7 +11,7 @@
                Margin="100, 50, 100, 50"
                HeightRequest="200"
                BackgroundColor="LightCyan">
-            <Grid ColumnDefinitions="*, *, *, *" RowDefinitions="*,*">
+            <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,1.5*">
                 <Label Grid.Column="0"
                        Grid.Row="1"
                        HorizontalOptions="Center"
@@ -26,7 +26,7 @@
                        Text="Name"
                        FontSize="Medium"
                        TextColor="Black" />
-                
+
                 <Label Grid.Column="1"
                        Grid.Row="1"
                        HorizontalOptions="Center"
@@ -71,8 +71,51 @@
                        Text="Importance"
                        FontSize="Medium"
                        TextColor="Black" />
-            </Grid>
+                
+                <Label Grid.Column="0"
+                       Grid.Row="2"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       Text="Поля для редактирования"
+                       FontSize="Micro"
+                       TextColor="Black" />
 
+                <Entry Text="{Binding SelectedObject.Name, Mode=TwoWay}"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                   TextColor="Black"
+                   HeightRequest="50"
+                   WidthRequest="200" />
+                <Picker x:Name="PositionPicker"
+                    HorizontalOptions="Center"
+                    Margin="10, 10, 10, 10"
+                    VerticalOptions="Center"
+                    BackgroundColor="LightGray"
+                    TextColor="Black"
+                    ItemsSource="{Binding PositionStorage.Positions}"
+                    ItemDisplayBinding="{Binding Name}"
+                    FontSize="Small"
+                    SelectedItem="{Binding SelectedPosition}"
+                    Grid.Row="3"
+                    Grid.Column="1">
+                </Picker>
+                <Entry Text="{Binding SelectedObject.Description, Mode=TwoWay}"
+                   Grid.Row="3"
+                   Grid.Column="2"
+                   TextColor="Black"
+                   HeightRequest="50"
+                   WidthRequest="200" />
+                <Entry Text="{Binding SelectedObject.Importance, Mode=TwoWay}"
+                   Grid.Row="3"
+                   Grid.Column="3"
+                   TextColor="Black"
+                   HeightRequest="50"
+                   WidthRequest="200" />
+            </Grid>
         </Frame>
+        <Button Text="Обновить"
+                WidthRequest="200"
+                Command="{Binding UpdatePositionResponsibilityCommand}"
+                CommandParameter="{Binding}" />
     </VerticalStackLayout>
 </ContentPage>
