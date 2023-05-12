@@ -13,11 +13,10 @@
         <convertions:ImportanceToColorValueConverter x:Key="ImportanceToColor" />
     </ContentPage.Resources>
 
-    <!--<ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior EventName="Loaded"
-                                        Command="{Binding UpdateGroupListCommand}" />
-    ЛИШНЕЕ
-    </ContentPage.Behaviors>-->
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Appearing"
+                                        Command="{Binding DoUpdateResponsibilitiesCommand}" />
+    </ContentPage.Behaviors>
 
 
     <Grid HorizontalOptions="Fill"

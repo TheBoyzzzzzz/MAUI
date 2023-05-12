@@ -20,46 +20,32 @@ public partial class PositionsViewModel : ObservableObject
         PositionStorage = positionStorage;
     }
 
-    //public ObservableCollection<Position> Positions { get; set; } = new();
     public ObservableCollection<PositionResponsibility> PositionResponsibilities { get; set; } = new();
     public PositionStorage PositionStorage { get; }
 
     [ObservableProperty]
     private Position _selectedPosition;
 
-    //[RelayCommand]
-    //async Task UpdateGroupList() => await GetPositions();
 
     [RelayCommand]
     async Task UpdateMembersList() => await GetPositionResponsibilities();
 
-    //public async Task GetPositions()
-    //{
-    //    var positions = await _positionService.GetAllAsync();
-    //    Positions.Clear();
-
-    //    await MainThread.InvokeOnMainThreadAsync(() =>
-    //    {
-    //        foreach (var position in positions)
-    //        {
-    //            Positions.Add(position);
-    //        }
-    //    });
-    //}
-
     public async Task GetPositionResponsibilities()
     {
-        var positionResponsibilities = await _positionResponsibilityService
-        .ListAsync(posResp => posResp.Position.Id == SelectedPosition.Id);
-
-        await MainThread.InvokeOnMainThreadAsync(() =>
+        if (SelectedPosition is not null)
         {
-            PositionResponsibilities.Clear(); // Мб тут можно что получше придумать, чем каждый раз чистить.
-            foreach (var positionResponsibility in positionResponsibilities)
+            var positionResponsibilities = await _positionResponsibilityService
+            .ListAsync(posResp => posResp.Position.Id == SelectedPosition.Id);
+
+            MainThread.BeginInvokeOnMainThread(() =>
             {
-                PositionResponsibilities.Add(positionResponsibility);
-            }
-        });
+                PositionResponsibilities.Clear(); 
+                foreach (var positionResponsibility in positionResponsibilities)
+                {
+                    PositionResponsibilities.Add(positionResponsibility);
+                }
+            }); 
+        }
     }
 
     [RelayCommand]
@@ -72,5 +58,12 @@ public partial class PositionsViewModel : ObservableObject
         };
 
         await Shell.Current.GoToAsync(nameof(PositionResponsibilityDetails), parameters);
+    }
+
+
+    [RelayCommand] async Task DoUpdateResponsibilities() => await UpdateResponsibilities();
+    private async Task UpdateResponsibilities()
+    {
+        await GetPositionResponsibilities();
     }
 }
