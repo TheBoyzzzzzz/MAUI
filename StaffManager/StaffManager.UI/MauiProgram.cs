@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using CommunityToolkit.Maui;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using StaffManager.Application.Abstractions;
@@ -36,11 +37,12 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
 
-
+        
         SetupServices(builder.Services);
         SetupViewModels(builder.Services);
         SetupViews(builder.Services);
         AddDbContext(builder);
+        
         return builder.Build();
     }
 
@@ -82,6 +84,8 @@ public static class MauiProgram
 #endif
         connStr = string.Format(connStr, dataDirectory);
         var options = new DbContextOptionsBuilder<AppDbContext>().UseSqlite(connStr).Options;
+        
         builder.Services.AddSingleton((s) => new AppDbContext(options));
+        
     }
 }

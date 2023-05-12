@@ -9,6 +9,7 @@ public class AppDbContext : DbContext
         : base(options)
     {
         Database.EnsureCreated();
+        
     }
 
     public DbSet<Position> Positions { get; set; }
@@ -25,6 +26,7 @@ public class AppDbContext : DbContext
         builder.Entity<PositionResponsibility>().Property(pr => pr.Name).IsRequired();
         builder.Entity<PositionResponsibility>().Property(pr => pr.Description).IsRequired();
         builder.Entity<PositionResponsibility>().Property(pr => pr.Importance).IsRequired();
+        builder.Entity<PositionResponsibility>().Property(pr => pr.PhotoPath).IsRequired();
         builder.Entity<PositionResponsibility>().HasOne(pr => pr.Position).WithMany(p => p.PositionResponsibilities);
     }
 }

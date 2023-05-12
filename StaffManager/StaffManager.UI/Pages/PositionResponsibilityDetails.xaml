@@ -6,20 +6,33 @@
              x:DataType="models:PositionResponsibilityDetailsViewModel"
              Title="Детальная информация об обязанности">
     <VerticalStackLayout>
+        
+            <!--<Image Source="{Binding SelectedObject.PhotoPath}"/>-->
+        
         <Frame HorizontalOptions="FillAndExpand"
                VerticalOptions="FillAndExpand"
                Margin="100, 50, 100, 50"
                HeightRequest="200"
                BackgroundColor="LightCyan">
-            <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,1.5*">
-                <Label Grid.Column="0"
+            
+            <Grid ColumnDefinitions="*,*,*,*,*" RowDefinitions="*,*,*,1.5*">
+                <Image 
+                    Grid.Column="0"
+                    Grid.RowSpan="3"
+                    Source="{Binding SelectedObject.PhotoPath}"/>
+                <Button
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Text="Изменить" Command="{Binding ChangePhotoCommand}"
+                    />
+                <Label Grid.Column="1"
                        Grid.Row="1"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        Text="{Binding SelectedObject.Name}"
                        FontSize="Medium"
                        TextColor="Black" />
-                <Label Grid.Column="0"
+                <Label Grid.Column="1"
                        Grid.Row="0"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
@@ -27,21 +40,21 @@
                        FontSize="Medium"
                        TextColor="Black" />
 
-                <Label Grid.Column="1"
+                <Label Grid.Column="2"
                        Grid.Row="1"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        Text="{Binding SelectedObject.Position.Name}"
                        FontSize="Medium"
                        TextColor="Black" />
-                <Label Grid.Column="1"
+                <Label Grid.Column="2"
                        Grid.Row="0"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        Text="Position"
                        FontSize="Medium"
                        TextColor="Black" />
-                <Label Grid.Column="2"
+                <Label Grid.Column="3"
                        Grid.Row="1"
                        HorizontalOptions="EndAndExpand"
                        VerticalOptions="Center"
@@ -49,14 +62,14 @@
                        TextColor="Black"
                        Text="{Binding SelectedObject.Description}"
                        FontSize="Medium" />
-                <Label Grid.Column="2"
+                <Label Grid.Column="3"
                        Grid.Row="0"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        Text="Description"
                        FontSize="Medium"
                        TextColor="Black" />
-                <Label Grid.Column="3"
+                <Label Grid.Column="4"
                        Grid.Row="1"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
@@ -64,7 +77,7 @@
                        TextColor="Black"
                        Text="{Binding SelectedObject.Importance}"
                        FontSize="Medium" />
-                <Label Grid.Column="3"
+                <Label Grid.Column="4"
                        Grid.Row="0"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
@@ -72,7 +85,7 @@
                        FontSize="Medium"
                        TextColor="Black" />
                 
-                <Label Grid.Column="0"
+                <Label Grid.Column="1"
                        Grid.Row="2"
                        HorizontalOptions="Start"
                        VerticalOptions="Center"
@@ -82,7 +95,7 @@
 
                 <Entry Text="{Binding SelectedObject.Name, Mode=TwoWay}"
                    Grid.Row="3"
-                   Grid.Column="0"
+                   Grid.Column="1"
                    TextColor="Black"
                    HeightRequest="50"
                    WidthRequest="200" />
@@ -97,17 +110,17 @@
                     FontSize="Small"
                     SelectedItem="{Binding SelectedPosition}"
                     Grid.Row="3"
-                    Grid.Column="1">
+                    Grid.Column="2">
                 </Picker>
                 <Entry Text="{Binding SelectedObject.Description, Mode=TwoWay}"
                    Grid.Row="3"
-                   Grid.Column="2"
+                   Grid.Column="3"
                    TextColor="Black"
                    HeightRequest="50"
                    WidthRequest="200" />
                 <Entry Text="{Binding SelectedObject.Importance, Mode=TwoWay}"
                    Grid.Row="3"
-                   Grid.Column="3"
+                   Grid.Column="4"
                    TextColor="Black"
                    HeightRequest="50"
                    WidthRequest="200" />
