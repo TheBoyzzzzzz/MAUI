@@ -31,6 +31,7 @@ public partial class PositionResponsibilityDetailsViewModel : ObservableObject, 
     private async Task Update()
     {
         SelectedObject.Position = SelectedPosition;
+        OnPropertyChanged(nameof(SelectedObject));
         await _positionResponsibilityService.UpdateAsync(SelectedObject);
         await _positionResponsibilityService.SaveChangesAsync();
     }
