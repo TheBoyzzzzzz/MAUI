@@ -26,13 +26,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior EventName="Loaded"
-                                        Command="{Binding UpdateGroupListCommand}" />
-    </ContentPage.Behaviors>
-
     <VerticalStackLayout>
-        <Grid RowDefinitions="*,*,*,*"
+        <Grid RowDefinitions="*,*,*,*,*"
               ColumnDefinitions="Auto,Auto"
               HorizontalOptions="Center"
               VerticalOptions="Center"
@@ -84,6 +79,14 @@
                    Placeholder="1"
                    HeightRequest="50"
                    WidthRequest="200" />
+            <Label Grid.Row="4"
+                   Grid.Column="0"
+                   Text="Картинка"
+                   Style="{StaticResource JustLabel}" />
+            <Button 
+                Grid.Row="4"
+                Grid.Column="1"
+                Text="Добавить" Command="{Binding ChangePhotoCommand}"/>
         </Grid>
         <Button Text="Добавить"
                 WidthRequest="200"

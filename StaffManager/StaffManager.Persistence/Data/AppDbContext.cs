@@ -8,6 +8,7 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
     {
+        //Database.EnsureDeleted();
         Database.EnsureCreated();
     }
 
@@ -25,6 +26,7 @@ public class AppDbContext : DbContext
         builder.Entity<PositionResponsibility>().Property(pr => pr.Name).IsRequired();
         builder.Entity<PositionResponsibility>().Property(pr => pr.Description).IsRequired();
         builder.Entity<PositionResponsibility>().Property(pr => pr.Importance).IsRequired();
+        builder.Entity<PositionResponsibility>().Property(pr => pr.PhotoPath).IsRequired();
         builder.Entity<PositionResponsibility>().HasOne(pr => pr.Position).WithMany(p => p.PositionResponsibilities);
     }
 }

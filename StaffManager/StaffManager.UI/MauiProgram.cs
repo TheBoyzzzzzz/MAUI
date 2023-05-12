@@ -41,6 +41,7 @@ public static class MauiProgram
         SetupViewModels(builder.Services);
         SetupViews(builder.Services);
         AddDbContext(builder);
+
         return builder.Build();
     }
 
@@ -53,9 +54,9 @@ public static class MauiProgram
 
     private static void SetupViewModels(IServiceCollection services)
     {
-        services.AddSingleton<PositionsViewModel>();
-        services.AddSingleton<AddPositionViewModel>();
-        services.AddSingleton<AddPositionResponsibilityViewModel>();
+        services.AddTransient<PositionsViewModel>();
+        services.AddTransient<AddPositionViewModel>();
+        services.AddTransient<AddPositionResponsibilityViewModel>();
         services.AddSingleton<MainViewModel>();
         services.AddSingleton<PositionResponsibilityDetailsViewModel>();
         services.AddSingleton<PositionStorage>();
@@ -63,9 +64,9 @@ public static class MauiProgram
 
     private static void SetupViews(IServiceCollection services)
     {
-        services.AddSingleton<Positions>();
-        services.AddSingleton<AddPositionPage>();
-        services.AddSingleton<AddPositionResponsibilityPage>();
+        services.AddTransient<Positions>();
+        services.AddTransient<AddPositionPage>();
+        services.AddTransient<AddPositionResponsibilityPage>();
         services.AddSingleton<PositionResponsibilityDetails>();
         services.AddSingleton<MainPage>();
     }
@@ -82,6 +83,8 @@ public static class MauiProgram
 #endif
         connStr = string.Format(connStr, dataDirectory);
         var options = new DbContextOptionsBuilder<AppDbContext>().UseSqlite(connStr).Options;
+
         builder.Services.AddSingleton((s) => new AppDbContext(options));
+
     }
 }
