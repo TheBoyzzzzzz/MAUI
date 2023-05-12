@@ -6,25 +6,24 @@
              x:DataType="models:PositionResponsibilityDetailsViewModel"
              Title="Детальная информация об обязанности">
     <VerticalStackLayout>
-        
-            <!--<Image Source="{Binding SelectedObject.PhotoPath}"/>-->
-        
+
+
         <Frame HorizontalOptions="FillAndExpand"
                VerticalOptions="FillAndExpand"
                Margin="100, 50, 100, 50"
-               HeightRequest="200"
+               HeightRequest="400"
                BackgroundColor="LightCyan">
-            
-            <Grid ColumnDefinitions="*,*,*,*,*" RowDefinitions="*,*,*,1.5*">
-                <Image 
-                    Grid.Column="0"
-                    Grid.RowSpan="3"
-                    Source="{Binding SelectedObject.PhotoPath}"/>
-                <Button
-                    Grid.Row="4"
-                    Grid.Column="0"
-                    Text="Изменить" Command="{Binding ChangePhotoCommand}"
-                    />
+
+            <Grid ColumnDefinitions="*,*,*,*,*"
+                  RowDefinitions="*,2*,*">
+                <Image Grid.Column="0"
+                       Grid.RowSpan="3"
+                       Source="{Binding SelectedObject.PhotoPath}" />
+                <Button Grid.Row="4"
+                        Grid.Column="0"
+                        Text="Изменить"
+                        HeightRequest="50"
+                        Command="{Binding ChangePhotoCommand}" />
                 <Label Grid.Column="1"
                        Grid.Row="1"
                        HorizontalOptions="Center"
@@ -56,9 +55,11 @@
                        TextColor="Black" />
                 <Label Grid.Column="3"
                        Grid.Row="1"
-                       HorizontalOptions="EndAndExpand"
+                       HorizontalOptions="Center"
                        VerticalOptions="Center"
                        Margin="0, 0, 50, 0"
+                       IsEnabled="False"
+                       MaxLines="1"
                        TextColor="Black"
                        Text="{Binding SelectedObject.Description}"
                        FontSize="Medium" />
@@ -84,46 +85,44 @@
                        Text="Importance"
                        FontSize="Medium"
                        TextColor="Black" />
-                
-                <Label Grid.Column="1"
-                       Grid.Row="2"
-                       HorizontalOptions="Start"
-                       VerticalOptions="Center"
-                       Text="Поля для редактирования"
-                       FontSize="Micro"
-                       TextColor="Black" />
 
                 <Entry Text="{Binding SelectedObject.Name, Mode=TwoWay}"
-                   Grid.Row="3"
-                   Grid.Column="1"
-                   TextColor="Black"
-                   HeightRequest="50"
-                   WidthRequest="200" />
+                       Grid.Row="2"
+                       Grid.Column="1"
+                       TextColor="Black"
+                       HorizontalTextAlignment="Center"
+                       Placeholder="Кушать конфеты"
+                       HeightRequest="50"
+                       WidthRequest="200" />
                 <Picker x:Name="PositionPicker"
-                    HorizontalOptions="Center"
-                    Margin="10, 10, 10, 10"
-                    VerticalOptions="Center"
-                    BackgroundColor="LightGray"
-                    TextColor="Black"
-                    ItemsSource="{Binding PositionStorage.Positions}"
-                    ItemDisplayBinding="{Binding Name}"
-                    FontSize="Small"
-                    SelectedItem="{Binding SelectedPosition}"
-                    Grid.Row="3"
-                    Grid.Column="2">
+                        HorizontalOptions="Center"
+                        Margin="10, 10, 10, 10"
+                        VerticalOptions="Center"
+                        BackgroundColor="LightGray"
+                        TextColor="Black"
+                        ItemsSource="{Binding PositionStorage.Positions}"
+                        ItemDisplayBinding="{Binding Name}"
+                        FontSize="Small"
+                        SelectedItem="{Binding SelectedPosition}"
+                        Grid.Row="3"
+                        Grid.Column="2">
                 </Picker>
                 <Entry Text="{Binding SelectedObject.Description, Mode=TwoWay}"
-                   Grid.Row="3"
-                   Grid.Column="3"
-                   TextColor="Black"
-                   HeightRequest="50"
-                   WidthRequest="200" />
+                       Grid.Row="2"
+                       Grid.Column="3"
+                       TextColor="Black"
+                       HeightRequest="50"
+                       Placeholder="Павел COSьмин"
+                       HorizontalTextAlignment="Center"
+                       WidthRequest="200" />
                 <Entry Text="{Binding SelectedObject.Importance, Mode=TwoWay}"
-                   Grid.Row="3"
-                   Grid.Column="4"
-                   TextColor="Black"
-                   HeightRequest="50"
-                   WidthRequest="200" />
+                       Grid.Row="2"
+                       Grid.Column="4"
+                       TextColor="Black"
+                       Placeholder="444"
+                       HeightRequest="50"
+                       HorizontalTextAlignment="Center"
+                       WidthRequest="200" />
             </Grid>
         </Frame>
         <Button Text="Обновить"
