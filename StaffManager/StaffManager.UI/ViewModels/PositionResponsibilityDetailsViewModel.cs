@@ -34,5 +34,19 @@ public partial class PositionResponsibilityDetailsViewModel : ObservableObject, 
         await _positionResponsibilityService.UpdateAsync(SelectedObject);
         await _positionResponsibilityService.SaveChangesAsync();
     }
+
+    [RelayCommand]
+    public async void ChangePhoto()
+    {
+        var result = await FilePicker.Default.PickAsync();
+
+        if (result != null && (result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase)
+            || result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase)))
+        {
+            SelectedObject.PhotoPath = result.FileName;
+
+            await _positionResponsibilityService.UpdateAsync(SelectedObject);
+        }
+    }
 }
 
