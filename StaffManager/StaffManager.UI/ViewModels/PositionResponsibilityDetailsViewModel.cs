@@ -41,8 +41,7 @@ public partial class PositionResponsibilityDetailsViewModel : ObservableObject, 
         var result = await FilePicker.Default.PickAsync();
 
         if (result != null && (result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase)
-            || result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
-            result.FileName.EndsWith("svg", StringComparison.OrdinalIgnoreCase)))
+            || result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase)))
         {
             SelectedObject.PhotoPath = result.FullPath;
         }

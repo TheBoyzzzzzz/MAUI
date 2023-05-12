@@ -17,7 +17,7 @@
             <Grid ColumnDefinitions="*,*,*,*,*"
                   RowDefinitions="*,2*,*">
                 <Image Grid.Column="0"
-                       Grid.RowSpan="3"
+                       Grid.RowSpan="2"
                        Source="{Binding SelectedObject.PhotoPath}" />
                 <Button Grid.Row="4"
                         Grid.Column="0"
@@ -35,7 +35,7 @@
                        Grid.Row="0"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
-                       Text="Name"
+                       Text="Название обязанности"
                        FontSize="Medium"
                        TextColor="Black" />
 
@@ -50,7 +50,7 @@
                        Grid.Row="0"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
-                       Text="Position"
+                       Text="Должность"
                        FontSize="Medium"
                        TextColor="Black" />
                 <Label Grid.Column="3"
@@ -59,7 +59,7 @@
                        VerticalOptions="Center"
                        Margin="0, 0, 50, 0"
                        IsEnabled="False"
-                       MaxLines="1"
+                       MaxLines="2"
                        TextColor="Black"
                        Text="{Binding SelectedObject.Description}"
                        FontSize="Medium" />
@@ -67,7 +67,7 @@
                        Grid.Row="0"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
-                       Text="Description"
+                       Text="Описание"
                        FontSize="Medium"
                        TextColor="Black" />
                 <Label Grid.Column="4"
@@ -82,7 +82,7 @@
                        Grid.Row="0"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
-                       Text="Importance"
+                       Text="Важность"
                        FontSize="Medium"
                        TextColor="Black" />
 

@@ -46,7 +46,6 @@ public partial class AddPositionResponsibilityViewModel : ObservableObject
         var posResposibility = new PositionResponsibility(Name, Description, importance, PhotoPath) { Position = SelectedPosition };
         await _positionResponsibilityService.AddAsync(posResposibility);
         await _positionResponsibilityService.SaveChangesAsync();
-
     }
 
     [RelayCommand]
@@ -55,17 +54,9 @@ public partial class AddPositionResponsibilityViewModel : ObservableObject
         var result = await FilePicker.Default.PickAsync();
 
         if (result != null && (result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase)
-            || result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
-            result.FileName.EndsWith("svg", StringComparison.OrdinalIgnoreCase)))
+            || result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase)))
         {
             PhotoPath = result.FullPath;
-
-            FileInfo fileInf = new FileInfo(PhotoPath);
-
-            if (!fileInf.Exists)
-            {
-                PhotoPath = "dotnet_bot.svg";
-            }
         }
     }
 }
