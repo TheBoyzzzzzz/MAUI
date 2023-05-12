@@ -25,7 +25,6 @@ public partial class PositionResponsibilityDetailsViewModel : ObservableObject, 
     {
         SelectedObject = query["PositionResponsibility"] as PositionResponsibility;
         SelectedPosition = SelectedObject.Position;
-
     }
 
     private async Task Update()
@@ -42,10 +41,10 @@ public partial class PositionResponsibilityDetailsViewModel : ObservableObject, 
         var result = await FilePicker.Default.PickAsync();
 
         if (result != null && (result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase)
-            || result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase)))
+            || result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
+            result.FileName.EndsWith("svg", StringComparison.OrdinalIgnoreCase)))
         {
             SelectedObject.PhotoPath = result.FullPath;
-
         }
     }
 }

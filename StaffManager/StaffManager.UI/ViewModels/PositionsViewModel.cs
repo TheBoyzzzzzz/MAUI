@@ -15,7 +15,7 @@ public partial class PositionsViewModel : ObservableObject
     public PositionsViewModel(IPositionService positionService, IPositionResponsibilityService positionResponsibilityService,
         PositionStorage positionStorage)
     {
-        
+
         _positionService = positionService;
         _positionResponsibilityService = positionResponsibilityService;
         PositionStorage = positionStorage;
@@ -40,12 +40,12 @@ public partial class PositionsViewModel : ObservableObject
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                PositionResponsibilities.Clear(); 
+                PositionResponsibilities.Clear();
                 foreach (var positionResponsibility in positionResponsibilities)
                 {
                     PositionResponsibilities.Add(positionResponsibility);
                 }
-            }); 
+            });
         }
     }
 

@@ -26,11 +26,6 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior EventName="Loaded"
-                                        Command="{Binding UpdateGroupListCommand}" />
-    </ContentPage.Behaviors>
-
     <VerticalStackLayout>
         <Grid RowDefinitions="*,*,*,*,*"
               ColumnDefinitions="Auto,Auto"
