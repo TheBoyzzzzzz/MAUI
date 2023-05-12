@@ -43,9 +43,8 @@ public partial class PositionResponsibilityDetailsViewModel : ObservableObject, 
         if (result != null && (result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase)
             || result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase)))
         {
-            SelectedObject.PhotoPath = result.FileName;
+            SelectedObject.PhotoPath = result.FullPath;
 
-            await _positionResponsibilityService.UpdateAsync(SelectedObject);
         }
     }
 }
